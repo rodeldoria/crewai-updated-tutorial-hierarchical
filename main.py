@@ -5,17 +5,19 @@ from tasks import AINewsLetterTasks
 from file_io import save_markdown
 
 from dotenv import load_dotenv
+import os
+
 load_dotenv()
 
 # Initialize the agents and tasks
 agents = AINewsLetterAgents()
 tasks = AINewsLetterTasks()
 
-# Initialize the OpenAI GPT-4 language model
+# Initialize the OpenAI GPT-4 language model with API key from environment variables
 OpenAIGPT4 = ChatOpenAI(
-    model="gpt-4"
+    model="gpt-4",
+    api_key=os.getenv("OPENAI_API_KEY")
 )
-
 
 # Instantiate the agents
 editor = agents.editor_agent()
